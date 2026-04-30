@@ -3,47 +3,22 @@ class Game:
     A class representing a basketball game.
     """
 
-    def __init__(self, teams: dict) -> None:
-        """
-        Initialize the game with team information.
+    def __init__(self, teams):
+        self.command1 = teams['command1']
+        self.command2 = teams['command2']
+        self.score1 = 0
+        self.score2 = 0
 
-        Args:
-            teams (dict): Dictionary with 'command1' and 'command2' keys.
-        """
-        self.command1: str = teams['command1']
-        self.command2: str = teams['command2']
-        self.score1: int = 0
-        self.score2: int = 0
-
-    def ball_thrown(self, command: int, points: int) -> None:
-        """
-        Adds points to the specified team.
-
-        Args:
-            command (int): Team number (1 or 2)
-            points (int): Number of points to add
-        """
+    def ball_thrown(self, command, points):
         if command == 1:
             self.score1 += points
         elif command == 2:
             self.score2 += points
 
-    def get_score(self) -> tuple:
-        """
-        Returns the current score.
-
-        Returns:
-            tuple: (score of team 1, score of team 2)
-        """
+    def get_score(self):
         return (self.score1, self.score2)
 
-    def get_winner(self) -> str:
-        """
-        Returns the winner's team name or 'Draw'.
-
-        Returns:
-            str: Team name or 'Draw'
-        """
+    def get_winner(self):
         if self.score1 > self.score2:
             return self.command1
         elif self.score2 > self.score1:
@@ -52,7 +27,7 @@ class Game:
             return 'ничья'
 
 
-game_one = Game({'command1' : 'Юта Джаз', 'command2' : 'Майами Хит'})
+game_one = Game({'command1': 'Юта Джаз', 'command2': 'Майами Хит'})
 game_one.ball_thrown(1, 2)
 game_one.ball_thrown(1, 3)
 game_one.ball_thrown(2, 2)
