@@ -3,57 +3,30 @@ class Point:
     A class representing a point on a plane.
     """
 
-    def __init__(self, coords: tuple = (0, 0)) -> None:
-        """
-        Initialize a point with coordinates.
+    def __init__(self, coords=(0, 0)):
+        self.x = coords[0]
+        self.y = coords[1]
 
-        Args:
-            coords (tuple): Coordinates (x, y). Defaults to (0, 0).
-        """
-        self.x: int = coords[0]
-        self.y: int = coords[1]
-
-    def get_x(self) -> int:
-        """Return the x-coordinate."""
+    def get_x(self):
         return self.x
 
-    def get_y(self) -> int:
-        """Return the y-coordinate."""
+    def get_y(self):
         return self.y
 
-    def distance(self, other: 'Point') -> float:
-        """
-        Calculate the distance to another point.
-
-        Args:
-            other (Point): Another point.
-
-        Returns:
-            float: Distance between points.
-        """
+    def distance(self, other):
         return ((self.x - other.x) ** 2 + (self.y - other.y) ** 2) ** 0.5
 
-    def sum(self, other: 'Point') -> 'Point':
-        """
-        Return a new point with coordinates equal to the sum of self and other.
-
-        Args:
-            other (Point): Another point.
-
-        Returns:
-            Point: New point with summed coordinates.
-        """
+    def sum(self, other):
         return Point((self.x + other.x, self.y + other.y))
 
-    def __str__(self) -> str:
-        """Return a string representation of the point."""
+    def __str__(self):
         return f"({self.x}; {self.y})"
 
-    def __repr__(self) -> str:
+    def __repr__(self):
         return str(self)
 
 
-p = Point((3,-7))
+p = Point((3, -7))
 print(p)
 a = Point()
 print(a)
