@@ -11,8 +11,8 @@ class NotSleeping:
             name (str): The person's name.
             count_sheeps (int): The initial number of sheep counted (default is 0).
         """
-        self.name: str = name
-        self.count_sheeps: int = count_sheeps
+        self.name = name
+        self.count_sheeps = count_sheeps
 
     def add_sheep(self) -> None:
         """
