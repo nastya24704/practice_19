@@ -1,87 +1,65 @@
-class User:
+class Game:
     """
-    A class representing a website user.
+    A class representing a basketball game.
     """
 
-    def __init__(self, id: int, nick_name: str, first_name: str,
-                 last_name: str = '', middle_name: str = '', gender: str = '') -> None:
+    def __init__(self, teams: dict) -> None:
         """
-        Initialize a user with required and optional attributes.
+        Initialize the game with team information.
 
         Args:
-            id (int): Unique user ID.
-            nick_name (str): User's nickname.
-            first_name (str): User's first name.
-            last_name (str): User's last name (optional).
-            middle_name (str): User's middle name (optional).
-            gender (str): User's gender (optional).
+            teams (dict): Dictionary with 'command1' and 'command2' keys.
         """
-        self.id = id
-        self.nick_name = nick_name
-        self.first_name = first_name
-        self.last_name = last_name
-        self.middle_name = middle_name
-        self.gender = gender
+        self.command1: str = teams['command1']
+        self.command2: str = teams['command2']
+        self.score1: int = 0
+        self.score2: int = 0
 
-    def update(self, id=None, nick_name=None, first_name=None, last_name=None,
-               middle_name=None, gender=None) -> None:
+    def ball_thrown(self, command: int, points: int) -> None:
         """
-        Update user attributes. Pass None or empty string to skip updating.
+        Adds points to the specified team.
+
+        Args:
+            command (int): Team number (1 or 2)
+            points (int): Number of points to add
         """
-        if id is not None:
-            self.id = id
-        if nick_name is not None and nick_name != '':
-            self.nick_name = nick_name
-        if first_name is not None and first_name != '':
-            self.first_name = first_name
-        if last_name is not None and last_name != '':
-            self.last_name = last_name
-        if middle_name is not None and middle_name != '':
-            self.middle_name = middle_name
-        if gender is not None and gender != '':
-            self.gender = gender
+        if command == 1:
+            self.score1 += points
+        elif command == 2:
+            self.score2 += points
 
-    def __str__(self) -> str:
+    def get_score(self) -> tuple:
         """
-        Return a string representation of the user.
+        Returns the current score.
+
+        Returns:
+            tuple: (score of team 1, score of team 2)
         """
-        # Build full name from non-empty parts
-        name_parts = [self.last_name, self.first_name, self.middle_name]
-        name = ' '.join(part for part in name_parts if part)
+        return (self.score1, self.score2)
 
-        result = f"ID: {self.id} LOGIN: {self.nick_name} NAME: {name}"
-
-        if self.gender:
-            result += f" GENDER: {self.gender}"
-
-        return result
-
-    def __repr__(self) -> str:
+    def get_winner(self) -> str:
         """
-        Return a string representation for debugging.
+        Returns the winner's team name or 'Draw'.
+
+        Returns:
+            str: Team name or 'Draw'
         """
-        return self.__str__()
+        if self.score1 > self.score2:
+            return self.command1
+        elif self.score2 > self.score1:
+            return self.command2
+        else:
+            return 'Draw'
 
 
-user_1 = User(12, 'alex', 'Алексей')
-print(user_1)
-user_2 = User(44, 'andru', 'Андрей', 'Петров')
-print(user_2)
-user_3 = User(25, 'nik', 'Николай', 'Иванов', 'Федорович')
-print(user_3)
-user_4 = User(61, 'ivan', 'Денис', 'Сидоров', 'Алексеевич', 'M')
-print(user_4)
-user_5 = User(47, 'ann', 'Анна', gender='F')
-print(user_5)
-user_4.update(0, '', 'Ваня')
-print(user_4)
-user_3.update(15, '', 'Никита', '', 'Петрович')
-print(user_3)
-users = []
-users.append(user_2)
-users.append(user_4)
-users.append(user_5)
-users.append(user_1)
-users.append(user_3)
-print(users)
-
+game_one = Game({'command1' : 'Юта Джаз', 'command2' : 'Майами Хит'})
+game_one.ball_thrown(1, 2)
+game_one.ball_thrown(1, 3)
+game_one.ball_thrown(2, 2)
+game_one.ball_thrown(1, 1)
+print(game_one.get_score())
+game_one.ball_thrown(2, 3)
+game_one.ball_thrown(2, 2)
+game_one.ball_thrown(1, 2)
+print(game_one.get_score())
+print(game_one.get_winner())
