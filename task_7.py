@@ -4,19 +4,19 @@ class TrafficLight:
     """
     permissible_values = ['зеленый', 'желтый', 'красный', 'желтый']
 
-    def __init__(self) -> None:
+    def __init__(self):
         """
         Initialize the traffic light with a green signal.
         """
-        self.current_signal: str = 'зеленый'
-        self._index: int = 0
+        self.current_signal = 'зеленый'
+        self._index = 0
 
-    def next_signal(self) -> None:
+    def next_signal(self):
         """
         Switch to the next signal.
         """
         self._index = (self._index + 1) % len(self.permissible_values)
-        self.current_signal = self.permissible_values[self._index] 
+        self.current_signal = self.permissible_values[self._index]
 
 
 seven_roads = TrafficLight()
