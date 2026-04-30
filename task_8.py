@@ -3,7 +3,7 @@ class MorseMsg:
     A class representing a message in Morse code.
     """
 
-    morse_to_eng: dict = {
+    morse_to_eng = {
         '.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D', '.': 'E',
         '..-.': 'F', '--.': 'G', '....': 'H', '..': 'I', '.---': 'J',
         '-.-': 'K', '.-..': 'L', '--': 'M', '-.': 'N', '---': 'O',
@@ -12,7 +12,7 @@ class MorseMsg:
         '--..': 'Z'
     }
 
-    morse_to_ru: dict = {
+    morse_to_ru = {
         '.-': 'А', '-...': 'Б', '.--': 'В', '--.': 'Г', '-..': 'Д',
         '.': 'Е', '...-': 'Ж', '--..': 'З', '..': 'И', '.---': 'Й',
         '-.-': 'К', '.-..': 'Л', '--': 'М', '-.': 'Н', '---': 'О',
@@ -22,8 +22,8 @@ class MorseMsg:
         '..--': 'Ю', '.-.-.': 'Я'
     }
 
-    vowels_eng: set = set('AEIOUY')
-    vowels_ru: set = set('АЕЁИОУЫЭЮЯ')
+    vowels_eng = set('AEIOUY')
+    vowels_ru = set('АЕЁИОУЫЭЮЯ')
 
     def __init__(self, morse_string: str) -> None:
         """
@@ -32,7 +32,7 @@ class MorseMsg:
         Args:
             morse_string: String of dots and dashes, letters separated by spaces.
         """
-        self.morse_words: list = morse_string.split()
+        self.morse_words = morse_string.split()
 
     def eng_decode(self) -> str:
         """
@@ -41,7 +41,7 @@ class MorseMsg:
         Returns:
             Decoded English string.
         """
-        result: list = []
+        result = []
         for code in self.morse_words:
             if code in self.morse_to_eng:
                 result.append(self.morse_to_eng[code])
@@ -54,7 +54,7 @@ class MorseMsg:
         Returns:
             Decoded Russian string.
         """
-        result: list = []
+        result = []
         for code in self.morse_words:
             if code in self.morse_to_ru:
                 result.append(self.morse_to_ru[code])
