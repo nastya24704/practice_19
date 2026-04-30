@@ -19,3 +19,9 @@ class Dog:
     def __str__(self) -> str:
         """Returns the dog's name when printed."""
         return self.name
+
+
+small_dog = Dog('Снупи')
+print(small_dog)
+small_dog.say()
+print('Кличка собаки', small_dog.name)
