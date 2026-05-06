@@ -10,7 +10,7 @@ class Dog:
         Args:
             name (str): The dog's name.
         """
-        self.name: str = name
+        self.name = name
 
     def say(self) -> None:
         """Prints the sound the dog makes."""
